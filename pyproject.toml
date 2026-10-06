@@ -1,0 +1,9 @@
+[project]
+name = "genlayer-source-quorum"
+version = "0.1.0"
+description = "GenLayer Intelligent Contract for independent source corroboration"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
