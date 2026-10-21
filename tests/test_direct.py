@@ -43,14 +43,24 @@ def test_rejects_empty_claim(direct_vm, direct_deploy):
         )
 
 
-def test_rejects_non_https_required_source(direct_vm, direct_deploy):
-    with direct_vm.expect_revert("source_a and source_b must use https://"):
+def test_rejects_non_https_source_a(direct_vm, direct_deploy):
+    with direct_vm.expect_revert("source_a must use https://"):
         direct_deploy(
             CONTRACT,
             "Example claim",
             "http://example.com/a",
             "https://example.com/b",
-            "",
+            sdk_version=SDK_VERSION,
+        )
+
+
+def test_rejects_non_https_source_b(direct_vm, direct_deploy):
+    with direct_vm.expect_revert("source_b must use https://"):
+        direct_deploy(
+            CONTRACT,
+            "Example claim",
+            "https://example.com/a",
+            "http://example.com/b",
             sdk_version=SDK_VERSION,
         )
 
